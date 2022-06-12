@@ -1,0 +1,7 @@
+{
+  "include": ["grammar.js"],
+  "compilerOptions": {
+    "lib": [],
+    "typeRoots": ["./types"]
+  }
+}
