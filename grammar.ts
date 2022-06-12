@@ -23,13 +23,7 @@ module.exports = grammar({
       prec.right(
         1,
         choice(
-          seq(
-            "if",
-            $.atom,
-            "then",
-            $.atom,
-            optional(seq("else", $.blockexpr))
-          )
+          seq("if", $.ntl_expr, "then", $.blockexpr, optional(seq("else", $.blockexpr)))
         )
       ),
     blockexpr: ($) => $._expression,
@@ -39,12 +33,19 @@ module.exports = grammar({
       choice(
         seq($.appexpr, "(", optional($.arguments), ")"), // regular application
         seq($.appexpr, "[", optional($.arguments), "]"), // index operation
+        seq($.appexpr, ".", $.atom),
         $.atom
       ),
     ntl_expr: ($) =>
       seq($.ntl_prefix_expr, repeat(seq($.qoperator, $.ntl_prefix_expr))),
     ntl_prefix_expr: ($) => seq(repeat(choice("!", "~")), $.ntl_app_expr),
-    ntl_app_expr: ($) => choice(seq($.ntl_app_expr, "(", $.arguments, ")")),
+    ntl_app_expr: ($) =>
+      choice(
+        seq($.ntl_app_expr, "(", $.arguments, ")"),
+        seq($.ntl_app_expr, "(", $.arguments, ")"),
+        seq($.ntl_app_expr, ".", $.atom),
+        $.atom
+      ),
     arguments: ($) => seq($.argument, repeat(seq(",", $.argument))),
     argument: ($) => seq($._expression),
     qoperator: ($) => $.op,

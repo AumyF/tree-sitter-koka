@@ -42,7 +42,7 @@
               },
               {
                 "type": "SYMBOL",
-                "name": "atom"
+                "name": "ntl_expr"
               },
               {
                 "type": "STRING",
@@ -50,7 +50,7 @@
               },
               {
                 "type": "SYMBOL",
-                "name": "atom"
+                "name": "blockexpr"
               },
               {
                 "type": "CHOICE",
@@ -194,6 +194,23 @@
           ]
         },
         {
+          "type": "SEQ",
+          "members": [
+            {
+              "type": "SYMBOL",
+              "name": "appexpr"
+            },
+            {
+              "type": "STRING",
+              "value": "."
+            },
+            {
+              "type": "SYMBOL",
+              "name": "atom"
+            }
+          ]
+        },
+        {
           "type": "SYMBOL",
           "name": "atom"
         }
@@ -272,6 +289,48 @@
               "value": ")"
             }
           ]
+        },
+        {
+          "type": "SEQ",
+          "members": [
+            {
+              "type": "SYMBOL",
+              "name": "ntl_app_expr"
+            },
+            {
+              "type": "STRING",
+              "value": "("
+            },
+            {
+              "type": "SYMBOL",
+              "name": "arguments"
+            },
+            {
+              "type": "STRING",
+              "value": ")"
+            }
+          ]
+        },
+        {
+          "type": "SEQ",
+          "members": [
+            {
+              "type": "SYMBOL",
+              "name": "ntl_app_expr"
+            },
+            {
+              "type": "STRING",
+              "value": "."
+            },
+            {
+              "type": "SYMBOL",
+              "name": "atom"
+            }
+          ]
+        },
+        {
+          "type": "SYMBOL",
+          "name": "atom"
         }
       ]
     },

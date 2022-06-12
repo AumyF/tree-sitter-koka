@@ -130,11 +130,11 @@
       "required": true,
       "types": [
         {
-          "type": "atom",
+          "type": "blockexpr",
           "named": true
         },
         {
-          "type": "blockexpr",
+          "type": "ntl_expr",
           "named": true
         }
       ]
@@ -153,7 +153,30 @@
           "named": true
         },
         {
+          "type": "atom",
+          "named": true
+        },
+        {
           "type": "ntl_app_expr",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "ntl_expr",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "ntl_prefix_expr",
+          "named": true
+        },
+        {
+          "type": "qoperator",
           "named": true
         }
       ]
