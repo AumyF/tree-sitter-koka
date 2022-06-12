@@ -17,15 +17,28 @@ module.exports = grammar({
 
   rules: {
     source_file: ($) => $._expression,
+    semi: ($) => seq(";", repeat(";")),
     _expression: ($) => choice($.basic_expr),
     basic_expr: ($) => choice($.if_expr, $.opexpr),
     if_expr: ($) =>
       prec.right(
         1,
         choice(
-          seq("if", $.ntl_expr, "then", $.blockexpr, optional(seq("else", $.blockexpr)))
+          seq(
+            "if",
+            $.ntl_expr,
+            "then",
+            $.blockexpr,
+            repeat($.elif),
+            optional(seq("else", $.blockexpr))
+          )
         )
       ),
+    elif: ($) => seq("elif", $.ntl_expr, "then", $.blockexpr),
+
+    matchexpr: ($) =>
+      seq("match", $.ntl_expr, "{", repeat(";"), repeat(seq($.matchrule, $.semi))),
+
     blockexpr: ($) => $._expression,
     opexpr: ($) => seq($.prefixexpr, repeat(seq($.qoperator, $.prefixexpr))),
     prefixexpr: ($) => seq(repeat(choice("!", "~")), $.appexpr),
@@ -80,5 +93,9 @@ module.exports = grammar({
         $.qidentifier,
         seq("(", ")") // TODO
       ),
+    matchrule: ($) =>
+      seq($.patterns, optional(seq("|", $._expression)), "->", $.blockexpr),
+    patterns: ($) => seq($.pattern, repeat(seq(",", $.pattern))),
+    pattern: ($) => choice($.identifier), // incomplete
   },
 });

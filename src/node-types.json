@@ -107,6 +107,25 @@
     }
   },
   {
+    "type": "elif",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "blockexpr",
+          "named": true
+        },
+        {
+          "type": "ntl_expr",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
     "type": "identifier",
     "named": true,
     "fields": {},
@@ -134,7 +153,34 @@
           "named": true
         },
         {
+          "type": "elif",
+          "named": true
+        },
+        {
           "type": "ntl_expr",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "matchrule",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "basic_expr",
+          "named": true
+        },
+        {
+          "type": "blockexpr",
+          "named": true
+        },
+        {
+          "type": "patterns",
           "named": true
         }
       ]
@@ -232,6 +278,36 @@
     }
   },
   {
+    "type": "pattern",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "identifier",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "patterns",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "pattern",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
     "type": "prefixexpr",
     "named": true,
     "fields": {},
@@ -275,6 +351,11 @@
         }
       ]
     }
+  },
+  {
+    "type": "semi",
+    "named": true,
+    "fields": {}
   },
   {
     "type": "source_file",
@@ -351,11 +432,19 @@
     "named": false
   },
   {
+    "type": "->",
+    "named": false
+  },
+  {
     "type": ".",
     "named": false
   },
   {
     "type": ":",
+    "named": false
+  },
+  {
+    "type": ";",
     "named": false
   },
   {
@@ -387,6 +476,10 @@
     "named": false
   },
   {
+    "type": "elif",
+    "named": false
+  },
+  {
     "type": "else",
     "named": false
   },
@@ -399,11 +492,19 @@
     "named": true
   },
   {
+    "type": "match",
+    "named": false
+  },
+  {
     "type": "symbols",
     "named": true
   },
   {
     "type": "then",
+    "named": false
+  },
+  {
+    "type": "{",
     "named": false
   },
   {
